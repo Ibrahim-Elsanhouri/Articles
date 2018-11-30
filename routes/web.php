@@ -38,3 +38,22 @@ Route::delete('/comments/{id}' , 'CommentsController@destroy')->name('comments.d
 Route::put('/comments/{id}' , 'CommentsController@update')->name('comments.update');
 
 Route::get('/user/verify/{token}' , 'Auth\RegisterController@verifyEmail')->name('user.verify');
+Route::get('/notify' , function(){
+$user = Auth::user();
+foreach($user->unreadnotifications as $not ){
+    echo $not->data['title'];
+    $not->markAsRead(); 
+    //readnotifications 
+//unreadnotifications
+}
+}); 
+Route::get('/sms' , function(){
+    Nexmo::message()->send([
+        'to'   => '966565579480',
+        'from' => 'SMT Technology',
+        'text' => 'SMS from SMT testing team-Ibrahim'
+    ]); 
+ 
+    // Nexmo method is added to User Model , also Configruation in config/ services.php
+    
+    }); 

@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use  App\Post;
 use  App\User;
 use  App\Tag;
-
+use  App\Notifications\PostNewNotification; 
+use Notification; 
 use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
@@ -72,7 +73,9 @@ $post->url = $img_name;
     
         $post->save();
         $post->tags()->sync($request->tags);
+        $usernot = User::all();
         
+        Notification::send($usernot , new PostNewNotification($post)) ;
         
 
      $request->url->move(public_path('upload') , $img_name );

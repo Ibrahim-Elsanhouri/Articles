@@ -41,6 +41,8 @@
                         <li><a href="/about">About Us</a></li>
                         <li><a href="{{route('posts.index')}}">Posts</a></li>
                         <li><a href="/contact">Contact Us</a></li>
+                        <li><a href="/notify">My Notifications</a></li>
+
 
                     </ul>
 
